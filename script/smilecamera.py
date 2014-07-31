@@ -88,7 +88,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Picture_Size)
-        so.setCameraOption('Picture_Size',randomoption)
+        so.setCameraOption('Picture Size',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 18
@@ -102,7 +102,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo_Location',randomoption)
+        so.setCameraOption('Geo Location',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 20
@@ -130,7 +130,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(White_Balance)
-        so.setCameraOption('White_Balance',randomoption)
+        so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('smile')
 
     def _pressBack(self,touchtimes):
