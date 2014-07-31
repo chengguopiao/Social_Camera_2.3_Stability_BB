@@ -103,7 +103,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Picture_Size)
-        so.setCameraOption('Picture Size',randomoption)
+        so.setCameraOption('Picture_Size',randomoption)
         tb.captureAndCheckPicCount('single')
 
     # Testcase 6
@@ -131,7 +131,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Self_Timer)
-        so.setCameraOption('Self Timer',randomoption)
+        so.setCameraOption('Self_Timer',randomoption)
         tb.captureAndCheckPicCount('single')
 
     # Testcase 8
@@ -159,7 +159,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(White_Balance)
-        so.setCameraOption('White Balance',randomoption)
+        so.setCameraOption('White_Balance',randomoption)
         tb.captureAndCheckPicCount('single')
 
     def testCapturepictureWithLocation(self):
@@ -172,7 +172,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',randomoption)
+        so.setCameraOption('Geo_Location',randomoption)
         tb.captureAndCheckPicCount('single')
 
     def testFrontFaceCapturePictureWithFD(self):
@@ -187,7 +187,7 @@ class CameraTest(unittest.TestCase):
         """
         so.setCameraOption('Switch Camera','1')
         randomoption = random.choice(Face_Detection)
-        so.setCameraOption('Face Detection',randomoption)
+        so.setCameraOption('Face_Detection',randomoption)
         tb.captureAndCheckPicCount('single')
 
     def testFrontFaceCapturepictureWithLocation(self):
@@ -202,7 +202,7 @@ class CameraTest(unittest.TestCase):
         """
         so.setCameraOption('Switch Camera','1')
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',randomoption)
+        so.setCameraOption('Geo_Location',randomoption)
         tb.captureAndCheckPicCount('single')
 
     def _pressBack(self,touchtimes):
