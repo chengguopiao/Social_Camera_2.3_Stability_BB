@@ -62,7 +62,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity 
         '''
         randomoption = random.choice(Video_Size) #Random select an option
-        so.setCameraOption('White_Balance',randomoption)
+        so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('video',5)
 
 
@@ -76,7 +76,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity 
         '''
         randomoption = random.choice(Geo_Location) #Random select an option
-        so.setCameraOption('White_Balance',randomoption)
+        so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('video',5)
 
     def testRecordVideoCaptureVideoWithBalance(self):
@@ -89,7 +89,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(White_Balance) #Random select an option
-        so.setCameraOption('White_Balance',randomoption)
+        so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('video',5)
 
     def testRecordVideoCaptureVideoWithExposure(self):
@@ -103,7 +103,7 @@ class CameraTest(unittest.TestCase):
                 5.Exit activity
         '''
         randomoption = random.choice(Exposure) #Random select an option
-        so.setCameraOption('White_Balance',randomoption)
+        so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('video',5)
 
     def _takeVideoAndCheckCount(self,recordtime=30,delaytime=2,capturetimes=0):
