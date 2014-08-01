@@ -18,7 +18,7 @@ ADB_DEVICES    = ADB + ' devices'
 ANDROID_SERIAL ='ANDROID_SERIAL'
 ##################################################################################################################
 #SetCaptureMode() Class variable
-MODE_LIST = ['single','depth','panorama','burst','perfectshot','video']
+MODE_LIST = ['single','depth','panorama','burst','perfectshot','video','burstfast']
 POP_MODE  = {'smile':"Smile\nOFF",
              'hdr':"HDR\nOFF",
              'burstfast':'FAST',
@@ -30,15 +30,11 @@ Mode   = {'9':'video',
           '11':'depth',
           '12':'panorama',
           '5':'burst',
-          '7':'perfectshot'}
+          '7':'perfectshot',
+          '0':'burstfast'
+          }
 
- 
-SMode_List   = {'video':'video',
-                 'single':'single',
-                 'depth':'depth',
-                 'panorama':'panorama',
-                 'burst':'burst',
-                 'perfectshot':'perfectshot'}        
+   
 
 
 
@@ -273,7 +269,7 @@ class SetCaptureMode():
         '''
         d(description = 'Show switch camera mode list').click.wait()
         d.click(2195,910)
-        time.sleep(1)
+        time.sleep(1)        
         d(description = 'Show switch camera mode list').click.wait()
         if mode == 'smile' or mode == 'hdr':
             d(text = POP_MODE[mode]).click.wait()
@@ -345,6 +341,8 @@ class SetOption():
                 You may need use the arguements that have been defined at the top of this file
         '''
         d(resourceId = 'com.intel.camera22:id/camera_settings').click.wait()
+        while not d(resourceId = 'com.intel.camera22:id/setting_item_name').wait.exists(timeout=2000):
+            d(resourceId = 'com.intel.camera22:id/camera_settings').click.wait()
         trytimes = 1
         while d(text = optiontext).wait.gone(timeout = 3000) and trytimes < 5:
             self._slideSettingListUp()
