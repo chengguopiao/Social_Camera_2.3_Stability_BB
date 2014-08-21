@@ -29,7 +29,7 @@
 #script.perfectshot.CameraTest.testCapturepictureWithGeoLocation = 50
 #script.perfectshot.CameraTest.testCaptureWithExposure = 50
 #script.perfectshot.CameraTest.testCapturePictureWithScenes = 50
-script.singlecamera.CameraTest.testCaptureSingleImageWithExposure = 50
+#script.singlecamera.CameraTest.testCaptureSingleImageWithExposure = 50
 #script.singlecamera.CameraTest.testCaptureSingleImageWithFlash = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithScene = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithFDFR = 50
