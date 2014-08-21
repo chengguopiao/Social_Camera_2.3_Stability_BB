@@ -31,8 +31,8 @@
 #script.perfectshot.CameraTest.testCapturePictureWithScenes = 50
 #script.singlecamera.CameraTest.testCaptureSingleImageWithExposure = 50
 #script.singlecamera.CameraTest.testCaptureSingleImageWithFlash = 50
-script.singlecamera.CameraTest.testCaptureSingleImageWithScene = 50
-script.singlecamera.CameraTest.testCaptureSingleImageWithFDFR = 50
+#script.singlecamera.CameraTest.testCaptureSingleImageWithScene = 50
+#script.singlecamera.CameraTest.testCaptureSingleImageWithFDFR = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithPictureSize = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithHits = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithSelfTimer = 50
