@@ -3,7 +3,7 @@
 script.burstfastcapture.CameraTest.testCapturePictureWithScenes = 50
 script.burstfastcapture.CameraTest.testCaptureWithPictureSize = 50
 script.burstfastcapture.CameraTest.testCapturepictureWithGeoLocation = 50
-script.burstslowcapture.CameraTest.testCaptureWithExposure = 50
+#script.burstslowcapture.CameraTest.testCaptureWithExposure = 50
 script.burstslowcapture.CameraTest.testCapturePictureWithScenes = 50
 script.burstslowcapture.CameraTest.testCaptureWithPictureSize = 50
 script.burstslowcapture.CameraTest.testCapturepictureWithGeoLocation = 50
@@ -22,7 +22,7 @@ script.hdrcapture.CameraTest.testCapturePictureWithFD = 50
 script.hdrcapture.CameraTest.testCapturepictureWithGeoLocation = 50
 script.hdrcapture.CameraTest.testCapturePictureWithPictureSize = 50
 script.hdrcapture.CameraTest.testCapturePictureWithSelfTimer = 50
-script.hdrcapture.CameraTest.testCaptureWithExposure = 50
+#script.hdrcapture.CameraTest.testCaptureWithExposure = 50
 script.panoramacapture.CameraTest.testCaptureWithExposure = 50
 script.panoramacapture.CameraTest.testCapturepictureWithGeoLocation = 50
 script.panoramacapture.CameraTest.testCapturepictureWithISOSetting = 50
