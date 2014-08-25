@@ -21,7 +21,7 @@ tb = util.TouchButton()
 #####################################
 EXPOSURE_OPTION = ['-6','-3','0','3','6']
 LOCATION_OPTION = ['off','on']
-SCENCE_OPTION=['barcode', 'night-portrait', 'portrait','landscape','night','sports','auto']
+SCENCE_OPTION = ['auto', 'landscape', 'portrait', 'night', 'sports']
 
 #################################
 
@@ -41,7 +41,7 @@ class CameraTest(unittest.TestCase):
         if  d(text = 'OK').wait.exists(timeout = 3000):
             d(text = 'OK').click.wait()
         assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
-        sm.switchCaptureMode('perfectshot')
+        sm.switchCaptureMode('Perfect Shot')
         time.sleep(1)
 
 
@@ -91,6 +91,7 @@ class CameraTest(unittest.TestCase):
         """
         # Step 2
         scence = random.choice(SCENCE_OPTION)
+        print scence
         so.setCameraOption('Scenes',scence)
         tb.captureAndCheckPicCount('single',2)
 

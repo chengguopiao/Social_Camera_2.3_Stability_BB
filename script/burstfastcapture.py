@@ -27,7 +27,7 @@ ISO               = ['iso-auto','iso-100','iso-200','iso-400','iso-800'] #_0_0
 White_Balance     = ['auto','incandescent','fluorescent','cloudy-daylight','daylight'] #_0_0
 Switch_Camera     = ['1','0'] #_0
 Face_Detection    = ['off','on'] #_0
-Scenes            = ['auto','landscape','portrait','night','sports','night-portrait'] #_0_0
+Scenes            = ['auto', 'landscape', 'portrait', 'night', 'sports'] #_0_0
 Self_Timer        = ['0','3','5','10'] #_0_0
 Geo_Location      = ['off','on'] #_0
 Picture_Size      = ['WideScreen','StandardScreen'] #_0_0
@@ -45,7 +45,7 @@ class CameraTest(unittest.TestCase):
         time.sleep(2)
         if d(text = 'OK').wait.exists(timeout = 3000):
             d(text = 'OK').click.wait()        
-        sm.switchCaptureMode('burstfast')
+        sm.switchCaptureMode('Burst','Fast')
 
     def tearDown(self):
         super(CameraTest,self).tearDown()

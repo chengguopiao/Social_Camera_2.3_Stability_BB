@@ -43,7 +43,7 @@ class CameraTest(unittest.TestCase):
             d(text = 'OK').click.wait()
         else:
             assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
-        sm.switchCaptureMode('single')
+        sm.switchCaptureMode('Single')
 
     def tearDown(self):
         super(CameraTest,self).tearDown()
