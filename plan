@@ -1,9 +1,9 @@
 [tests]
-script.burstfastcapture.CameraTest.testCaptureWithExposure = 50
-script.burstfastcapture.CameraTest.testCapturePictureWithScenes = 50
-script.burstfastcapture.CameraTest.testCaptureWithPictureSize = 50
-script.burstfastcapture.CameraTest.testCapturepictureWithGeoLocation = 50
-script.burstslowcapture.CameraTest.testCaptureWithExposure = 50
+#script.burstfastcapture.CameraTest.testCaptureWithExposure = 50
+#script.burstfastcapture.CameraTest.testCapturePictureWithScenes = 50
+#script.burstfastcapture.CameraTest.testCaptureWithPictureSize = 50
+#script.burstfastcapture.CameraTest.testCapturepictureWithGeoLocation = 50
+#script.burstslowcapture.CameraTest.testCaptureWithExposure = 50
 script.burstslowcapture.CameraTest.testCapturePictureWithScenes = 50
 script.burstslowcapture.CameraTest.testCaptureWithPictureSize = 50
 script.burstslowcapture.CameraTest.testCapturepictureWithGeoLocation = 50
