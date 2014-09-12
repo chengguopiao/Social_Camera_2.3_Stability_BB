@@ -10,8 +10,8 @@
 #script.continuouscapture.CameraTest.testCapturePictureWithFlash = 50
 #script.continuouscapture.CameraTest.testCaptureWithExposure = 50
 #script.continuouscapture.CameraTest.testCapturePictureWithScenes = 50
-script.continuouscapture.CameraTest.testCapturePictureWithFD = 50
-script.continuouscapture.CameraTest.testCapturePictureWithPictureSize = 50
+#script.continuouscapture.CameraTest.testCapturePictureWithFD = 50
+#script.continuouscapture.CameraTest.testCapturePictureWithPictureSize = 50
 script.continuouscapture.CameraTest.testCapturepictureWithGeoLocation = 50
 script.continuouscapture.CameraTest.testCapturepictureWithHints = 50
 script.continuouscapture.CameraTest.testRearFaceCapturePictureWithFD = 50
