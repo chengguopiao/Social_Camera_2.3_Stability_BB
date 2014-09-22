@@ -39,11 +39,11 @@
 #script.singlecamera.CameraTest.testFrontFaceCapturepictureWithLocation = 50
 #script.smilecamera.CameraTest.testCaptureSmileImageWithFlash = 50
 #script.smilecamera.CameraTest.testCaptureSmileImageWithExposure = 50
-script.smilecamera.CameraTest.testCaptureSmileImageWithScene = 50
-script.smilecamera.CameraTest.testCaptureSmileImageWithPictureSize = 50
-script.smilecamera.CameraTest.testCaptureSmileImageWithLocation = 50
-script.smilecamera.CameraTest.testCaptureSmileImageWithISO = 50
-script.smilecamera.CameraTest.testCaptureSmileImageWithWB = 50
+#script.smilecamera.CameraTest.testCaptureSmileImageWithScene = 50
+#script.smilecamera.CameraTest.testCaptureSmileImageWithPictureSize = 50
+#script.smilecamera.CameraTest.testCaptureSmileImageWithLocation = 50
+#script.smilecamera.CameraTest.testCaptureSmileImageWithISO = 50
+#script.smilecamera.CameraTest.testCaptureSmileImageWithWB = 50
 #script.videocapture.CameraTest.testRecordVideoWithFlash = 50
 script.videocapture.CameraTest.testRecordVideoWithVideoSize = 50
 script.videocapture.CameraTest.testRecordVideoWithGeoLocation = 50
