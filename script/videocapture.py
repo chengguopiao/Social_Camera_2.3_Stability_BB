@@ -43,6 +43,8 @@ class CameraTest(unittest.TestCase):
         super(CameraTest,self).setUp()
         self._launchCamera()
         time.sleep(2)
+        if d(text = 'Skip').wait.exists(timeout = 3000):
+            d(text = 'Skip').click.wait() 
         if d(text = 'OK').wait.exists(timeout = 3000):
             d(text = 'OK').click.wait()        
         sm.switchCaptureMode('Video')
