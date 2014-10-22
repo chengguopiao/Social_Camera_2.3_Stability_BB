@@ -34,7 +34,7 @@
 #script.singlecamera.CameraTest.testCaptureSingleImageWithWB = 50
 #script.singlecamera.CameraTest.testCapturepictureWithLocation = 50
 #script.singlecamera.CameraTest.testFrontFaceCapturePictureWithFD = 50
-script.singlecamera.CameraTest.testFrontFaceCapturepictureWithLocation = 50
+#script.singlecamera.CameraTest.testFrontFaceCapturepictureWithLocation = 50
 script.smilecamera.CameraTest.testCaptureSmileImageWithExposure = 50
 script.smilecamera.CameraTest.testCaptureSmileImageWithScene = 50
 script.smilecamera.CameraTest.testCaptureSmileImageWithPictureSize = 50
