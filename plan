@@ -43,7 +43,7 @@
 #script.smilecamera.CameraTest.testCaptureSmileImageWithWB = 50
 #script.videocapture.CameraTest.testRecordVideoWithVideoSize = 50
 #script.videocapture.CameraTest.testRecordVideoWithGeoLocation = 50
-script.videocapture.CameraTest.testRecordVideoCaptureVideoWithBalance = 50
+#script.videocapture.CameraTest.testRecordVideoCaptureVideoWithBalance = 50
 script.videocapture.CameraTest.testRecordVideoCaptureVideoWithExposure = 50
 script.perfectshot.CameraTest.testCapturepictureWithGeoLocation = 50
 script.perfectshot.CameraTest.testCapturePictureWithScenes = 50
