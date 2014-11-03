@@ -14,7 +14,7 @@
 #script.continuouscapture.CameraTest.testCapturepictureWithGeoLocation = 50
 #script.continuouscapture.CameraTest.testCapturepictureWithHints = 50
 #script.continuouscapture.CameraTest.testRearFaceCapturePictureWithFD = 50
-script.continuouscapture.CameraTest.testRearFaceCapturepictureWithGeoLocation = 50
+#script.continuouscapture.CameraTest.testRearFaceCapturepictureWithGeoLocation = 50
 #script.continuouscapture.CameraTest.testCapturepictureWithISO = 50
 #script.continuouscapture.CameraTest.testCapturepictureWithWhiteBalance = 50
 script.hdrcapture.CameraTest.testCapturePictureWithFD = 50
