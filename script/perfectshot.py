@@ -39,9 +39,9 @@ class CameraTest(unittest.TestCase):
         #a.cmd('launch','com.intel.camera22/.Camera')
         #time.sleep(2)
         #if d(text = 'Yes').wait.exists(timeout = 3000):
-            d(text = 'Yes').click.wait()
+        #    d(text = 'Yes').click.wait()
         #if d(text = 'Skip').wait.exists(timeout = 3000):
-            d(text = 'Skip').click.wait()
+        #    d(text = 'Skip').click.wait()
         #assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
         a.setUpDevice()
         sm.switchCaptureMode('Perfect Shot')
