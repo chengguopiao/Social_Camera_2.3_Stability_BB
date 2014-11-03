@@ -42,7 +42,7 @@ PICTURESIZE_OPTION = ['WideScreen','StandardScreen']
 HINTS_OPTION=['off', 'on']
 SELFTIMER_OPTION=['0','3','5','10']
 WHITEBALANCE_OPTION=['cloudy-daylight', 'fluorescent','daylight','incandescent','auto']
-SCENCE_OPTION=['barcode', 'night-portrait', 'portrait','landscape','night','sports','auto']
+SCENCE_OPTION=['portrait','landscape','night','sports','auto']#'barcode', 'night-portrait',
 FDFR_OPTION=['off', 'on']
 #################################
 
