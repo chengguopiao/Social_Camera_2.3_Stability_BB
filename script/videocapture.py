@@ -47,7 +47,7 @@ class CameraTest(unittest.TestCase):
         #    d(text = 'Yes').click.wait()
         #if d(text = 'Skip').wait.exists(timeout = 3000):
         #    d(text = 'Skip').click.wait()
-        a.setUpDevice(False)
+        AD.setUpDevice(False)
         sm.switchCaptureMode('Video')
 
     def tearDown(self):
