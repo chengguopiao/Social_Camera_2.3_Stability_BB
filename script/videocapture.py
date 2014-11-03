@@ -41,12 +41,13 @@ Shortcut_Button_3 = ['exposure','iso','whitebalance','flashmode','id','fdfr','sc
 class CameraTest(unittest.TestCase):
     def setUp(self):
         super(CameraTest,self).setUp()
-        self._launchCamera()
-        time.sleep(2)
-        if d(text = 'Yes').wait.exists(timeout = 3000):
-            d(text = 'Yes').click.wait()
-        if d(text = 'Skip').wait.exists(timeout = 3000):
-            d(text = 'Skip').click.wait()
+        #self._launchCamera()
+        #time.sleep(2)
+        #if d(text = 'Yes').wait.exists(timeout = 3000):
+        #    d(text = 'Yes').click.wait()
+        #if d(text = 'Skip').wait.exists(timeout = 3000):
+        #    d(text = 'Skip').click.wait()
+        a.setUpDevice(False)
         sm.switchCaptureMode('Video')
 
     def tearDown(self):
