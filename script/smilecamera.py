@@ -33,23 +33,25 @@ class CameraTest(unittest.TestCase):
     def setUp(self):
         super(CameraTest,self).setUp()
         # rm DCIM folder and refresh from adb shell
-        a.cmd('rm','/sdcard/DCIM/100ANDRO')
-        a.cmd('refresh','/sdcard/DCIM/100ANDRO')
+        #a.cmd('rm','/sdcard/DCIM/100ANDRO')
+        #a.cmd('refresh','/sdcard/DCIM/100ANDRO')
         #Because default camera after launching is single mode, so we set this step in setUp().
         #Step 1. Launch single capture activity
-        a.cmd('launch','com.intel.camera22/.Camera')
-        time.sleep(2)
-        if d(text = 'Yes').wait.exists(timeout = 3000):
-            d(text = 'Yes').click.wait()
-        if d(text = 'Skip').wait.exists(timeout = 3000):
-            d(text = 'Skip').click.wait()
-        assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
+        #a.cmd('launch','com.intel.camera22/.Camera')
+        #time.sleep(2)
+        #if d(text = 'Yes').wait.exists(timeout = 3000):
+        #    d(text = 'Yes').click.wait()
+        #if d(text = 'Skip').wait.exists(timeout = 3000):
+        #    d(text = 'Skip').click.wait()
+        #assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
+        a.setUpDevice()
         sm.switchCaptureMode('Single','Smile')
 
     def tearDown(self):
         super(CameraTest,self).tearDown()
         #4.Exit  activity
-        self._pressBack(4)
+        #self._pressBack(4)
+        a.tearDownDevice()
 
     # Testcase 4
     def testCaptureSmileImageWithExposure(self):
