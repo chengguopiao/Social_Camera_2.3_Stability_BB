@@ -238,17 +238,18 @@ class Adb():
     def _t_cmd(self,func):
         cmd = ADB + ' ' + func
         return subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-    def setUpDevice(self):
+    def setUpDevice(self,delAndReFlag=True):
         #Unlock the screen if the screen is locked
         if d(resourceId = 'com.android.keyguard:id/keyguard_selector_view_frame').wait.exists(timeout = 1000):
             lockWindowBounds = d(resourceId = 'com.android.keyguard:id/keyguard_selector_view_frame').info.get('bounds')
             startPoint_x = (lockWindowBounds['right']+lockWindowBounds['left'])/2
             startPoint_y = (lockWindowBounds['bottom']+lockWindowBounds['top'])/2
             d.swipe(startPoint_x,startPoint_y,lockWindowBounds['right'],startPoint_y)
-        #Delete all image/video files captured before
-        self.cmd('rm','/sdcard/DCIM/*')
-        #Refresh media after delete files
-        self.cmd('refresh','/sdcard/DCIM/*')
+        if delAndReFlag:
+            #Delete all image/video files captured before
+            self.cmd('rm','/sdcard/DCIM/*')
+            #Refresh media after delete files
+            self.cmd('refresh','/sdcard/DCIM/*')
         #Launch social camera
         self.cmd('launch',ACTIVITY_NAME)
         time.sleep(2)
