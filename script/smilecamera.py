@@ -50,8 +50,7 @@ class CameraTest(unittest.TestCase):
     def tearDown(self):
         super(CameraTest,self).tearDown()
         #4.Exit  activity
-        #self._pressBack(4)
-        a.tearDownDevice()
+        self._pressBack(4)
 
     # Testcase 4
     def testCaptureSmileImageWithExposure(self):
