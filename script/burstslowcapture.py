@@ -65,7 +65,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Exposure) #Random select an option
-        so.setCameraOption('Exposure',randomoption)
+        so.setCameraOption('Exposure',randomoption,util.ModeNumber['burst'])
         tb.captureAndCheckPicCount('single',10)
 
     def testCapturePictureWithScenes(self):
@@ -78,9 +78,9 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Scenes) #Random select an option
-        so.setCameraOption('Scenes',randomoption)
+        so.setCameraOption('Scenes',randomoption,util.ModeNumber['burst'])
         tb.captureAndCheckPicCount('single',10)
-        so.setCameraOption('Scenes','auto') #Force set scenes to auto
+        so.setCameraOption('Scenes','auto',util.ModeNumber['burst']) #Force set scenes to auto
 
     def testCaptureWithPictureSize(self):
         '''
@@ -92,7 +92,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Picture_Size) #Random select an option
-        so.setCameraOption('Picture Size',randomoption)
+        so.setCameraOption('Picture Size',randomoption,util.ModeNumber['burst'])
         tb.captureAndCheckPicCount('single',10)
 
     def testCapturepictureWithGeoLocation(self):
@@ -105,7 +105,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         '''
         randomoption = random.choice(Geo_Location) #Random select an option
-        so.setCameraOption('Geo Location',randomoption)
+        so.setCameraOption('Geo Location',randomoption,util.ModeNumber['burst'])
         tb.captureAndCheckPicCount('single',10)
 
     def _captureAndCheckPicCount(self,capturemode,delaytime=2):
