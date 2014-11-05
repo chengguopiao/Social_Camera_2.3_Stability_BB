@@ -81,6 +81,7 @@ class CameraTest(unittest.TestCase):
         randomoption = random.choice(Scenes)
         so.setCameraOption('Scenes',randomoption)
         tb.captureAndCheckPicCount('single')
+        so.setCameraOption('Scenes','auto') #Force set scenes to auto
 
     # Testcase 4
     def testCaptureSingleImageWithFDFR(self):
@@ -137,6 +138,7 @@ class CameraTest(unittest.TestCase):
         randomoption = random.choice(Self_Timer)
         so.setCameraOption('Self Timer',randomoption)
         tb.captureAndCheckPicCount('single',randomoption)
+        so.setCameraOption('Self Timer','0') #Force set timer to off
 
     # Testcase 8
     def testCaptureSingleImageWithISO(self):
