@@ -67,7 +67,7 @@ class CameraTest(unittest.TestCase):
         #step 2
         #exposure = random.choice( ['3', '6', '0','-3','-6'] )
         exposure = random.choice(EXPOSURE_OPTION)
-        so.setCameraOption('Exposure',exposure)
+        so.setCameraOption('Exposure',exposure,util.ModeNumber['panorama'])
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
@@ -82,7 +82,7 @@ class CameraTest(unittest.TestCase):
         """   
         #Step 2
         location = random.choice(LOCATION_OPTION)
-        so.setCameraOption('Geo Location',location)
+        so.setCameraOption('Geo Location',location,util.ModeNumber['panorama'])
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
@@ -99,7 +99,7 @@ class CameraTest(unittest.TestCase):
 
         #Step 2
         iso = random.choice(IOS_OPTION)
-        so.setCameraOption('ISO',iso)
+        so.setCameraOption('ISO',iso,util.ModeNumber['panorama'])
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
