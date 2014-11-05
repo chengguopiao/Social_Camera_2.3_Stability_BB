@@ -52,8 +52,7 @@ class CameraTest(unittest.TestCase):
         super(CameraTest,self).tearDown()
         #4.Exit  activity
         tb.switchBackOrFrontCamera('back')
-        #self._pressBack(4)
-        a.tearDownDevice()
+        self._pressBack(4)
 
     # Testcase 2
     def testCaptureSingleImageWithExposure(self):
@@ -194,7 +193,7 @@ class CameraTest(unittest.TestCase):
         """
         so.setCameraOption('Switch Camera','1')
         randomoption = random.choice(Face_Detection)
-        so.setCameraOption('Face Detection',randomoption)
+        so.setCameraOption('Face Detection',randomoption,util.ModeNumber['single'],util.Switch_Camera[0])
         tb.captureAndCheckPicCount('single')
 
     def testFrontFaceCapturepictureWithLocation(self):
@@ -209,7 +208,7 @@ class CameraTest(unittest.TestCase):
         """
         so.setCameraOption('Switch Camera','1')
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',randomoption)
+        so.setCameraOption('Geo Location',randomoption,util.ModeNumber['single'],util.Switch_Camera[0])
         tb.captureAndCheckPicCount('single')
 
     def _pressBack(self,touchtimes):
