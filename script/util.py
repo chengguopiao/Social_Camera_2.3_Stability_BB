@@ -397,7 +397,7 @@ class SetOption():
         cated_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | wc -l'))
         #print '_0_0.xml wc -l = %s' %cated_0_0 + ' and _0.xml wc -l = %s' %cated_0
         #If it is the first time launching camera, there are only 4 lines in _0_0.xml. Need more logic.
-        if cated_0_0 <= 4 and cated_0 <= 8:
+        if cated_0_0 <= 4 and cated_0 <= 8 and newoptiontext!='Geo_Location':
             currentoption = DEFAULT_OPTION[newoptiontext]
             currentindex = DICT_OPTION_NAME[newoptiontext].index(currentoption)
             targetindex  = DICT_OPTION_NAME[newoptiontext].index(option)
