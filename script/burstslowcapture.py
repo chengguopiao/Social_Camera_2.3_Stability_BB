@@ -80,6 +80,7 @@ class CameraTest(unittest.TestCase):
         randomoption = random.choice(Scenes) #Random select an option
         so.setCameraOption('Scenes',randomoption)
         tb.captureAndCheckPicCount('single',10)
+        so.setCameraOption('Scenes','auto') #Force set scenes to auto
 
     def testCaptureWithPictureSize(self):
         '''
