@@ -136,7 +136,7 @@ class CameraTest(unittest.TestCase):
         """
         randomoption = random.choice(Self_Timer)
         so.setCameraOption('Self Timer',randomoption)
-        tb.captureAndCheckPicCount('single')
+        tb.captureAndCheckPicCount('single',randomoption)
 
     # Testcase 8
     def testCaptureSingleImageWithISO(self):
