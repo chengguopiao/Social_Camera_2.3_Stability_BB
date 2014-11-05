@@ -137,7 +137,7 @@ class CameraTest(unittest.TestCase):
         """
         randomoption = random.choice(Self_Timer)
         so.setCameraOption('Self Timer',randomoption)
-        tb.captureAndCheckPicCount('single',randomoption)
+        tb.captureAndCheckPicCount('single',int(randomoption))
         so.setCameraOption('Self Timer','0') #Force set timer to off
 
     # Testcase 8
