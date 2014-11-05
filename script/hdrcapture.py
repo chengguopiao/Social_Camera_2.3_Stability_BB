@@ -137,7 +137,7 @@ class CameraTest(unittest.TestCase):
         # Step 2
         so.setCameraOption('Self Timer',timer)
         # Step 3
-        tb.captureAndCheckPicCount('smile')
+        tb.captureAndCheckPicCount('single',int(timer))
         so.setCameraOption('Self Timer','0') #Force set timer to off
 
     def _launchCamera(self):
