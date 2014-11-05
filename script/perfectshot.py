@@ -66,7 +66,7 @@ class CameraTest(unittest.TestCase):
         """ 
         location = random.choice(LOCATION_OPTION)
         #Step 2
-        so.setCameraOption('Geo Location',location)
+        so.setCameraOption('Geo Location',location,util.ModeNumber['perfectshot'])
         # Step 3
         tb.captureAndCheckPicCount('single')
 
@@ -81,7 +81,7 @@ class CameraTest(unittest.TestCase):
         """          
         #Step 2
         exposure = random.choice(EXPOSURE_OPTION)
-        so.setCameraOption('Exposure',exposure)
+        so.setCameraOption('Exposure',exposure,util.ModeNumber['perfectshot'])
         tb.captureAndCheckPicCount('single',2)
         
 # Test case 3
@@ -96,7 +96,7 @@ class CameraTest(unittest.TestCase):
         # Step 2
         scence = random.choice(SCENCE_OPTION)
         print scence
-        so.setCameraOption('Scenes',scence)
+        so.setCameraOption('Scenes',scence,util.ModeNumber['perfectshot'])
         tb.captureAndCheckPicCount('single',2)
 
 ########################################################3
