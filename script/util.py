@@ -38,7 +38,14 @@ Mode   = {'9':'video',
           '7':'perfectshot',
           '0':'burstfast'
           }
-
+ModeNumber = {'video':'9',
+              'single':'1',
+              'depth':'12',
+              'panorama':'11',
+              'burst':'5',
+              'perfectshot':'7',
+              'default':'0'
+          }
 ##################################################################################################################
 #SetOption() Class variable
 Exposure          = ['-6','-3','0','3','6'] #_0_0
@@ -377,7 +384,7 @@ class SetOption():
         d.swipe(x_1, y, x_2 - x_i, y)
         time.sleep(2)
 
-    def setCameraOption(self,optiontext,option):
+    def setCameraOption(self,optiontext,option,mode=ModeNumber['single'],backOrFront=Switch_Camera[1]):
         '''
            ***Usage***
             To set Scenes as 'sports':
@@ -393,9 +400,43 @@ class SetOption():
             self._slideSettingListUp()
             trytimes = trytimes + 1
         newoptiontext = optiontext.replace(' ', '_')
-        cated_0_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | wc -l'))
-        cated_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | wc -l'))
+        #cated_0_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | wc -l'))
+        #cated_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | wc -l'))
         #print '_0_0.xml wc -l = %s' %cated_0_0 + ' and _0.xml wc -l = %s' %cated_0
+        if newoptiontext == 'Video_Size':
+            stringcatedone = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_'+mode+'_'+backOrFront+'.xml | grep %s' %DICT_OPTION_KEY[newoptiontext][0])
+            stringcatedtwo = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_'+mode+'_'+backOrFront+'.xml | grep %s' %DICT_OPTION_KEY[newoptiontext][1])
+            if stringcatedone == None or stringcatedone =='' or stringcatedtwo == None or stringcatedtwo == '':
+                currentoption = DEFAULT_OPTION[newoptiontext]
+            else:
+                currenthighspeed = ((stringcatedone.split('value=\"')[1]).split('\"'))[0]
+                currentqualitykey = ((stringcatedtwo.split('>')[1]).split('<'))[0]
+                currentoption = [currenthighspeed,currentqualitykey]
+        else:
+            if newoptiontext not in SETTINGS_0:
+                stringcated = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_'+mode+'_'+backOrFront+'.xml | grep %s' %DICT_OPTION_KEY[newoptiontext])
+                #raise Exception('stringcated: '+stringcated+', adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_'+mode+'_'+backOrFront+'.xml | grep')
+                if stringcated == None or stringcated =='':
+                    currentoption = DEFAULT_OPTION[newoptiontext]
+                else:
+                    currentoption = ((stringcated.split('>')[1]).split('<'))[0]
+            else:
+                stringcated = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep %s' %DICT_OPTION_KEY[newoptiontext])
+                if stringcated == None or stringcated =='':
+                    currentoption = DEFAULT_OPTION[newoptiontext]
+                else:
+                    currentoption = ((stringcated.split('>')[1]).split('<'))[0]
+        #raise Exception(currentoption)
+        #Get the current option's index and compare it with the target option
+        currentindex = DICT_OPTION_NAME[newoptiontext].index(currentoption)
+        targetindex  = DICT_OPTION_NAME[newoptiontext].index(option)
+        #diffindex = abs(currentindex - targetindex)
+        if currentindex != targetindex:
+            d.click(self._getFirstItem() + self._getOptionWidthAndHeight()[0] * targetindex, self._getOptionOrdinate(optiontext))
+            d.click(1000,500)
+        else:
+            d.click(1000,500)
+        '''
         #If it is the first time launching camera, there are only 4 lines in _0_0.xml. Need more logic.
         if cated_0_0 <= 4 and cated_0 <= 8 and newoptiontext!='Geo_Location':
             currentoption = DEFAULT_OPTION[newoptiontext]
@@ -437,7 +478,6 @@ class SetOption():
                 d.click(1000,500)
             else:
                 d.click(1000,500)
-            '''
             #Settinglayout do change UI very much, so need one more logic
             settinglayout = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep pref_settings_layout_key')
             if settinglayout.find('Large')!= -1:
