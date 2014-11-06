@@ -80,6 +80,7 @@ class CameraTest(unittest.TestCase):
         so.setCameraOption('Scenes',randomoption)
         tb.captureAndCheckPicCount('smile')
         so.setCameraOption('Scenes','auto') #Force set scenes to auto
+        time.sleep(2)
 
     # Testcase 16
     def testCaptureSmileImageWithPictureSize(self):
