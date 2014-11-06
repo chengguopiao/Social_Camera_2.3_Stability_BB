@@ -90,7 +90,7 @@ class CameraTest(unittest.TestCase):
         '''
         fdfr = random.choice(FDFR_OPTION)
         # Step 2
-        so.setCameraOption('Face Detection',fdfr)
+        so.setCameraOption('Face Detection',fdfr,util.ModeNumber['hdr'])
         # Step 3
         tb.captureAndCheckPicCount('single')
 
@@ -105,7 +105,7 @@ class CameraTest(unittest.TestCase):
         '''
         geo = random.choice(GEO_OPTION)
         # Step 2
-        so.setCameraOption('Geo Location',geo)
+        so.setCameraOption('Geo Location',geo,util.ModeNumber['hdr'])
         # Step 3
         tb.captureAndCheckPicCount('single')
 
@@ -120,10 +120,10 @@ class CameraTest(unittest.TestCase):
         '''
         size = random.choice(PICSIZE_OPTION)
         # Step 2
-        so.setCameraOption('Picture Size',size)
+        so.setCameraOption('Picture Size',size,util.ModeNumber['hdr'])
         # Step 3
         tb.captureAndCheckPicCount('single')
-        so.setCameraOption('Picture Size','WideScreen') #Force set to the default setting
+        so.setCameraOption('Picture Size','WideScreen',util.ModeNumber['hdr']) #Force set to the default setting
 
     def testCapturePictureWithSelfTimer(self):
         '''
@@ -135,10 +135,10 @@ class CameraTest(unittest.TestCase):
         '''
         timer = random.choice(TIMER_OPTION)
         # Step 2
-        so.setCameraOption('Self Timer',timer)
+        so.setCameraOption('Self Timer',timer,util.ModeNumber['hdr'])
         # Step 3
         tb.captureAndCheckPicCount('single',int(timer))
-        so.setCameraOption('Self Timer','0') #Force set timer to off
+        so.setCameraOption('Self Timer','0',util.ModeNumber['hdr']) #Force set timer to off
 
     def _launchCamera(self):
         d.start_activity(component = ACTIVITY_NAME)
