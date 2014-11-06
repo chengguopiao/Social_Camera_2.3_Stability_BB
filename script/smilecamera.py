@@ -63,7 +63,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Exposure)
-        so.setCameraOption('Exposure',randomoption)
+        so.setCameraOption('Exposure',randomoption,util.ModeNumber['smile'])
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 9
@@ -77,9 +77,9 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Scenes)
-        so.setCameraOption('Scenes',randomoption)
+        so.setCameraOption('Scenes',randomoption,util.ModeNumber['smile'])
         tb.captureAndCheckPicCount('smile')
-        so.setCameraOption('Scenes','auto') #Force set scenes to auto
+        so.setCameraOption('Scenes','auto',util.ModeNumber['smile']) #Force set scenes to auto
         time.sleep(2)
 
     # Testcase 16
@@ -93,7 +93,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Picture_Size)
-        so.setCameraOption('Picture Size',randomoption)
+        so.setCameraOption('Picture Size',randomoption,util.ModeNumber['smile'])
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 18
@@ -107,7 +107,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',randomoption)
+        so.setCameraOption('Geo Location',randomoption,util.ModeNumber['smile'])
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 20
@@ -121,7 +121,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(ISO)
-        so.setCameraOption('ISO',randomoption)
+        so.setCameraOption('ISO',randomoption,util.ModeNumber['smile'])
         tb.captureAndCheckPicCount('smile')
 
     # Testcase 25
@@ -135,7 +135,7 @@ class CameraTest(unittest.TestCase):
         4.Exit  activity
         """
         randomoption = random.choice(White_Balance)
-        so.setCameraOption('White Balance',randomoption)
+        so.setCameraOption('White Balance',randomoption,util.ModeNumber['smile'])
         tb.captureAndCheckPicCount('smile')
 
     def _pressBack(self,touchtimes):
