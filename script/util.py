@@ -36,6 +36,8 @@ Mode   = {'9':'video',
           '12':'panorama',
           '5':'burst',
           '7':'perfectshot',
+          '3':'smile',
+          '2':'hdr',
           '0':'burstfast'
           }
 ModeNumber = {'video':'9',
@@ -44,6 +46,8 @@ ModeNumber = {'video':'9',
               'panorama':'11',
               'burst':'5',
               'perfectshot':'7',
+              'smile':'3',
+              'hdr':'2',
               'default':'0'
           }
 ##################################################################################################################
