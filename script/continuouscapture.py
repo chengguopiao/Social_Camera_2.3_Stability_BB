@@ -13,68 +13,30 @@ import util
 import unittest
 import random
 
-a  = util.Adb()
-sm = util.SetCaptureMode()
-so = util.SetOption()
-tb = util.TouchButton()
-#Written by Piao chengguo
+#Written by ZhuYanbo
 
-# PATH
-PATH ='/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml '
-PATH1='cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml '
-# key
-EXPOSURE_KEY ='| grep pref_camera_exposure_key'
-IOS_KEY='| grep pref_camera_iso_key'
-LOCATION_KEY ='| grep pref_camera_geo_location_key'
-SCENE_KEY ='| grep pref_camera_scenemode_key'
-FDFR_KEY ='| grep pref_fdfr_key'
-PICTURE_SIZE_KEY ='| grep pref_camera_picture_size_key'
-HINTS_KEY ='| grep pref_camera_hints_key'
-TIMER_KEY ='| grep pref_camera_delay_shooting_key'
-WHITEBALANCE_KEY ='| grep pref_camera_whitebalance_key'
-FLASH_STATE='| grep pref_camera_flashmode_key'
-#################################
-FLASH_OPTION=['auto', 'off', 'on']
-EXPOSURE_OPTION=['-6','-3','0','3','6']
-LOCATION_OPTION=['off','on']
-IOS_OPTION=['iso-800', 'iso-400','iso-200','iso-100','iso-auto']
-PICTURESIZE_OPTION = ['WideScreen','StandardScreen']
-HINTS_OPTION=['off', 'on']
-SELFTIMER_OPTION=['0','3','5','10']
-WHITEBALANCE_OPTION=['cloudy-daylight', 'fluorescent','daylight','incandescent','auto']
-SCENCE_OPTION=['portrait','landscape','night','sports','auto']#'barcode', 'night-portrait',
-FDFR_OPTION=['off', 'on']
-#################################
-
-PACKAGE_NAME = 'com.intel.camera22'
-ACTIVITY_NAME = PACKAGE_NAME + '/.Camera'
+a              = util.Adb()
+sm             = util.SetCaptureMode()
+so             = util.SetOption()
+tb             = util.TouchButton()
+Exposure       = util.Exposure
+Geo_Location   = util.Geo_Location
+ISO            = util.ISO
+Picture_Size   = util.Picture_Size
+Hints          = util.Hints
+White_Balance  = util.White_Balance
+Scenes         = util.Scenes
+Face_Detection = util.Face_Detection
 
 class CameraTest(unittest.TestCase):
     
     def setUp(self):
         super(CameraTest,self).setUp()
-        # rm DCIM folder and refresh from adb shell
-        #a.cmd('rm','/sdcard/DCIM/100ANDRO')
-        #a.cmd('refresh','/sdcard/DCIM/100ANDRO')
-        #Because default camera after launching is single mode, so we set this step in setUp().
-        #Step 1. Launch single capture activity
-        #a.cmd('launch','com.intel.camera22/.Camera')
-        #time.sleep(2)
-        #if d(text = 'Yes').wait.exists(timeout = 3000):
-        #    d(text = 'Yes').click.wait()
-        #if d(text = 'Skip').wait.exists(timeout = 3000):
-        #    d(text = 'Skip').click.wait()
-        #else:
-        #    assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
         a.setUpDevice()
         sm.switchCaptureMode('Single')    
 
-
     def tearDown(self):
         super(CameraTest,self).tearDown()
-        #4.Exit  activity
-        #self._pressBack(4)
-        #a.cmd('pm','com.intel.camera22')
         a.tearDownDevice()
 
     # # Test case 1
@@ -103,7 +65,7 @@ class CameraTest(unittest.TestCase):
                4.Exit  activity
         """       
         # Step 2
-        exposure = random.choice(EXPOSURE_OPTION)
+        exposure = random.choice(Exposure)
         so.setCameraOption('Exposure',exposure)
         # Step 3
         tb.captureAndCheckPicCount('longclick')
@@ -119,7 +81,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit  activity
         """
         # Step 2
-        scenes = random.choice(SCENCE_OPTION)
+        scenes = random.choice(Scenes)
         so.setCameraOption('Scenes',scenes)
         # Step 3
         tb.captureAndCheckPicCount('longclick')
@@ -134,7 +96,7 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         """
-        fdfr =random.choice(FDFR_OPTION)
+        fdfr =random.choice(Face_Detection)
         # Step 2
         so.setCameraOption('Face Detection',fdfr)
         # Step 3
@@ -150,7 +112,7 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         """
-        picturesize = random.choice(PICTURESIZE_OPTION)
+        picturesize = random.choice(Picture_Size)
         # Step 2
         so.setCameraOption('Picture Size',picturesize)
         # Step 3
@@ -166,7 +128,7 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         """ 
-        location = random.choice(LOCATION_OPTION)
+        location = random.choice(Geo_Location)
         # Step 2
         so.setCameraOption('Geo Location',location)
         # Step 3
@@ -181,7 +143,7 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         """ 
-        hints = random.choice(HINTS_OPTION)
+        hints = random.choice(Hints)
         # Step 2
         so.setCameraOption('Hints',hints)
         # Step 3
@@ -198,7 +160,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit  activity
         """
         tb.switchBackOrFrontCamera('front')
-        fdfr =random.choice(FDFR_OPTION)
+        fdfr =random.choice(Face_Detection)
         # Step 2
         so.setCameraOption('Face Detection',fdfr)
         # Step 3
@@ -216,7 +178,7 @@ class CameraTest(unittest.TestCase):
                 4.Exit  activity
         """ 
         tb.switchBackOrFrontCamera('front')
-        location =random.choice(FDFR_OPTION)
+        location =random.choice(Geo_Location)
         # Step 2
         so.setCameraOption('Geo Location',location)
         # Step 3
@@ -247,7 +209,7 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         """
-        iso = random.choice(IOS_OPTION)
+        iso = random.choice(ISO)
         # Step 2
         so.setCameraOption('ISO',iso)
         # Step 3
@@ -264,18 +226,8 @@ class CameraTest(unittest.TestCase):
                 4.Exit  activity
         """
         # Step 2
-        whitebalance = random.choice(WHITEBALANCE_OPTION)
+        whitebalance = random.choice(White_Balance)
         # Step 2
         so.setCameraOption('White Balance',whitebalance)
         # Step 3
         tb.captureAndCheckPicCount('longclick')
-
-#######################################################3
-    
-    def _pressBack(self,touchtimes):
-        for i in range(1,touchtimes+1):
-            d.press('back')
-
-
-if __name__ =='__main__':
-    unittest.main() 

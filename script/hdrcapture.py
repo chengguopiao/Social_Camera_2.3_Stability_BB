@@ -12,73 +12,31 @@ import util
 import string
 import random
 
-a  = util.Adb()
-sm = util.SetCaptureMode()
-so = util.SetOption()
-tb = util.TouchButton()
+#Written by ZhuYanbo
 
-#Written by XuGuanjun
-
-PACKAGE_NAME  = 'com.intel.camera22'
-ACTIVITY_NAME = PACKAGE_NAME + '/.Camera'
-
-#All setting info of camera could be cat in the folder
-PATH_PREF_XML  = '/data/data/com.intel.camera22/shared_prefs/'
-
-#FDFR / GEO / BACK&FROUNT xml file in com.intelcamera22_preferences_0.xml
-PATH_0XML      = PATH_PREF_XML + 'com.intel.camera22_preferences_0.xml'
-
-#PICSIZE / EXPROSURE / TIMER / WHITEBALANCE / ISO / HITS / VIDEOSIZE in com.intel.camera22_preferences_0_0.xml
-PATH_0_0XML    = PATH_PREF_XML + 'com.intel.camera22_preferences_0_0.xml'
-
-#####                                    #####
-#### Below is the specific settings' info ####
-###                                        ###
-##                                          ##
-#                                            #
-#Exposure options
-EXPOSURE_OPTION = ['-6','-3','0','3','6']
-
-#Scene options
-SCENE_OPTION    = ['barcode','night-portrait','portrait','landscape','night','sports','auto']
-
-#Picture size options
-PICSIZE_OPTION  = ['WideScreen','StandardScreen']
-
-#Geo options
-GEO_OPTION      = ['off','on']
-
-#Flash options
-FLASH_OPTION    = ['off','on']
-
-#Video size options
-VSIZE_OPTION    = ['4','5','5','6','6']
-
-#White balance options
-WBALANCE_OPTION = ['cloudy','fluorescent','daylight','incandescent','auto']
-
-#FD/FR options
-FDFR_OPTION     = ['on','off']
-
-#Self timer options
-TIMER_OPTION    = ['0','3','5','10']
+a              = util.Adb()
+sm             = util.SetCaptureMode()
+so             = util.SetOption()
+tb             = util.TouchButton()
+modeNumber     = util.ModeNumber['hdr']
+Exposure       = util.Exposure
+Scene          = util.Scene
+Picture_Size   = util.Picture_Size
+Geo_Location   = util.Geo_Location
+Face_Detection = util.Face_Detection
+Self_Timer     = util.Self_Timer
 
 class CameraTest(unittest.TestCase):
     def setUp(self):
         super(CameraTest,self).setUp()
-        #Delete all image/video files captured before
-        #a.cmd('rm','/sdcard/DCIM/*')
-        #Refresh media after delete files
-        #a.cmd('refresh','/sdcard/DCIM/*')
-        #Launch social camera
-        #self._launchCamera()
         a.setUpDevice()
         sm.switchCaptureMode('Single','HDR')
 
     def tearDown(self):
         super(CameraTest,self).tearDown()
-        self._pressBack(4)
+        util.pressBackKey(4)
 
+    # Testcase 1
     def testCapturePictureWithFD(self):
         '''
             Summary: Capture image with FD/FR
@@ -88,12 +46,13 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit activity
         '''
-        fdfr = random.choice(FDFR_OPTION)
+        fdfr = random.choice(Face_Detection)
         # Step 2
-        so.setCameraOption('Face Detection',fdfr,util.ModeNumber['hdr'])
+        so.setCameraOption('Face Detection',fdfr,util.modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('single')
 
+    # Testcase 2
     def testCapturepictureWithGeoLocation(self):
         '''
             Summary: Capture image with Geo-tag
@@ -103,12 +62,13 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         '''
-        geo = random.choice(GEO_OPTION)
+        geo = random.choice(Geo_Location)
         # Step 2
-        so.setCameraOption('Geo Location',geo,util.ModeNumber['hdr'])
+        so.setCameraOption('Geo Location',geo,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('single')
 
+    # Testcase 3
     def testCapturePictureWithPictureSize(self):
         '''
             Summary: Capture image with Photo size
@@ -118,13 +78,14 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         '''
-        size = random.choice(PICSIZE_OPTION)
+        size = random.choice(Picture_Size)
         # Step 2
-        so.setCameraOption('Picture Size',size,util.ModeNumber['hdr'])
+        so.setCameraOption('Picture Size',size,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('single')
-        so.setCameraOption('Picture Size','WideScreen',util.ModeNumber['hdr']) #Force set to the default setting
+        so.setCameraOption('Picture Size','WideScreen',modeNumber) #Force set to the default setting
 
+    # Testcase 4
     def testCapturePictureWithSelfTimer(self):
         '''
         Summary: Capture image with Self-timer
@@ -133,25 +94,9 @@ class CameraTest(unittest.TestCase):
                 3.Touch shutter button to capture picture
                 4.Exit  activity
         '''
-        timer = random.choice(TIMER_OPTION)
+        timer = random.choice(Self_Timer)
         # Step 2
-        so.setCameraOption('Self Timer',timer,util.ModeNumber['hdr'])
+        so.setCameraOption('Self Timer',timer,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('single',int(timer))
-        so.setCameraOption('Self Timer','0',util.ModeNumber['hdr']) #Force set timer to off
-
-    def _launchCamera(self):
-        d.start_activity(component = ACTIVITY_NAME)
-        #When it is the first time to launch camera there will be a dialog to ask user 'remember location', so need to check
-        try:
-            if d(text = 'Yes').wait.exists(timeout = 3000):
-                d(text = 'Yes').click.wait() 
-            assert d(text = 'Skip').wait.exists(timeout = 2000)
-            d(text = 'Skip').click.wait()
-        except:
-            pass
-        assert d(resourceId = 'com.intel.camera22:id/mode_button').wait.exists(timeout = 3000), 'Launch camera failed in 3s'
-
-    def _pressBack(self,touchtimes):
-        for i in range(0,touchtimes):
-            d.press('back')
+        so.setCameraOption('Self Timer','0',modeNumber) #Force set timer to off

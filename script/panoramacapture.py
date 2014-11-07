@@ -13,46 +13,25 @@ import util
 import unittest
 import random
 
-a  = util.Adb()
-sm = util.SetCaptureMode()
-so = util.SetOption()
-tb = util.TouchButton()
-#Written by Piao chengguo
-#################################################
-EXPOSURE_OPTION=['-6','-3','0','3','6']
-LOCATION_OPTION =['off','on']
-IOS_OPTION = ['iso-800', 'iso-400','iso-200','iso-100','iso-auto']
-
-#################################
-
-PACKAGE_NAME = 'com.intel.camera22'
-ACTIVITY_NAME = PACKAGE_NAME + '/.Camera'
+a            = util.Adb()
+sm           = util.SetCaptureMode()
+so           = util.SetOption()
+tb           = util.TouchButton()
+modeNumber   = util.ModeNumber['panorama']
+Exposure     = util.Exposure
+Geo_Location = util.Geo_Location
+ISO          = util.ISO
 
 class CameraTest(unittest.TestCase):
 
     def setUp(self):
         super(CameraTest,self).setUp()
-        # rm DCIM folder and refresh from adb shell
-        #a.cmd('rm','/sdcard/DCIM/100ANDRO')
-        #a.cmd('refresh','/sdcard/DCIM/100ANDRO')
-        #Because default camera after launching is single mode, so we set this step in setUp().
-        #Step 1. Launch single capture activity
-        #a.cmd('launch','com.intel.camera22/.Camera')
-        #time.sleep(2)
-        #if d(text = 'Yes').wait.exists(timeout = 3000):
-        #    d(text = 'Yes').click.wait()
-        #if d(text = 'Skip').wait.exists(timeout = 3000):
-        #    d(text = 'Skip').click.wait()
-        #assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
         a.setUpDevice()
         sm.switchCaptureMode('Panorama')
         time.sleep(1)
 
     def tearDown(self):
         super(CameraTest,self).tearDown()
-        #4.Exit  activity
-        #self._pressBack(4)
-        #a.cmd('pm','com.intel.camera22')
         a.tearDownDevice()
 
 # Test case 1
@@ -65,9 +44,8 @@ class CameraTest(unittest.TestCase):
                  4.Exit  activity 
         """
         #step 2
-        #exposure = random.choice( ['3', '6', '0','-3','-6'] )
-        exposure = random.choice(EXPOSURE_OPTION)
-        so.setCameraOption('Exposure',exposure,util.ModeNumber['panorama'])
+        exposure = random.choice(Exposure)
+        so.setCameraOption('Exposure',exposure,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
@@ -81,8 +59,8 @@ class CameraTest(unittest.TestCase):
                 4.Exit activity
         """   
         #Step 2
-        location = random.choice(LOCATION_OPTION)
-        so.setCameraOption('Geo Location',location,util.ModeNumber['panorama'])
+        location = random.choice(Geo_Location)
+        so.setCameraOption('Geo Location',location,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('smile')
 
@@ -98,16 +76,7 @@ class CameraTest(unittest.TestCase):
         """
 
         #Step 2
-        iso = random.choice(IOS_OPTION)
-        so.setCameraOption('ISO',iso,util.ModeNumber['panorama'])
+        iso = random.choice(ISO)
+        so.setCameraOption('ISO',iso,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('smile')
-
-######################################
-    def _pressBack(self,touchtimes):
-        for i in range(1,touchtimes+1):
-            d.press('back')
-
-
-if __name__ =='__main__':  
-    unittest.main() 

@@ -7,44 +7,25 @@ import util
 import string
 import random
 
-a  = util.Adb()
-sm = util.SetCaptureMode()
-so = util.SetOption()
-tb = util.TouchButton()
-
-Exposure          = ['-6','-3','0','3','6'] #_0_0
-ISO               = ['iso-auto','iso-100','iso-200','iso-400','iso-800'] #_0_0
-White_Balance     = ['auto','incandescent','fluorescent','cloudy-daylight','daylight'] #_0_0
-Switch_Camera     = ['1','0'] #_0
-Face_Detection    = ['off','on'] #_0
-Scenes            = ['auto','landscape','portrait','night','sports'] #_0_0 ,'night-portrait'
-Self_Timer        = ['0','3','5','10'] #_0_0
-Geo_Location      = ['off','on'] #_0
-Picture_Size      = ['WideScreen','StandardScreen'] #_0_0
-Hints             = ['off','on'] #_0_0
-Video_Size        = [['false','4'],['false','5'],['true','5'],['false','6'],['true','6']] #_0_0
-Settings_Layout   = ['Mini','Large'] #_0
-Shortcut_Button_1 = ['exposure','iso','whitebalance','flashmode','id','fdfr','scenemode','delay','geo'] #_0
-Shortcut_Button_2 = ['exposure','iso','whitebalance','flashmode','id','fdfr','scenemode','delay','geo'] #_0
-Shortcut_Button_3 = ['exposure','iso','whitebalance','flashmode','id','fdfr','scenemode','delay','geo'] #_0
+a              = util.Adb()
+sm             = util.SetCaptureMode()
+so             = util.SetOption()
+tb             = util.TouchButton()
+Exposure       = util.Exposure
+ISO            = util.ISO
+White_Balance  = util.White_Balance
+Switch_Camera  = ['1','0'] #_0
+Face_Detection = util.Face_Detection
+Scenes         = util.Scenes
+Self_Timer     = util.Self_Timer
+Geo_Location   = util.Geo_Location
+Picture_Size   = util.Picture_Size
+Hints          = util.Hints
 
 class CameraTest(unittest.TestCase):
 
     def setUp(self):
         super(CameraTest,self).setUp()
-        # rm DCIM folder and refresh from adb shell
-        #a.cmd('rm','/sdcard/DCIM/100ANDRO')
-        #a.cmd('refresh','/sdcard/DCIM/100ANDRO')
-        #Because default camera after launching is single mode, so we set this step in setUp().
-        #Step 1. Launch single capture activity
-        #a.cmd('launch','com.intel.camera22/.Camera')
-        #time.sleep(2)
-        #if d(text = 'Yes').wait.exists(timeout = 3000):
-        #    d(text = 'Yes').click.wait()
-        #if d(text = 'Skip').wait.exists(timeout = 3000):
-        #    d(text = 'Skip').click.wait()
-        #else:
-        #    assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
         a.setUpDevice()
         sm.switchCaptureMode('Single')
 
@@ -52,7 +33,7 @@ class CameraTest(unittest.TestCase):
         super(CameraTest,self).tearDown()
         #4.Exit  activity
         tb.switchBackOrFrontCamera('back')
-        self._pressBack(4)
+        util.pressBackKey(4)
 
     # Testcase 2
     def testCaptureSingleImageWithExposure(self):
@@ -168,6 +149,7 @@ class CameraTest(unittest.TestCase):
         so.setCameraOption('White Balance',randomoption)
         tb.captureAndCheckPicCount('single')
 
+    # Testcase 10
     def testCapturepictureWithLocation(self):
         """
         Summary:Capture image with Location.
@@ -181,6 +163,7 @@ class CameraTest(unittest.TestCase):
         so.setCameraOption('Geo Location',randomoption)
         tb.captureAndCheckPicCount('single')
 
+    # Testcase 11
     def testFrontFaceCapturePictureWithFD(self):
         """
         Summary:Capture image with FD/FR on front camera.
@@ -193,9 +176,10 @@ class CameraTest(unittest.TestCase):
         """
         so.setCameraOption('Switch Camera','1')
         randomoption = random.choice(Face_Detection)
-        so.setCameraOption('Face Detection',randomoption,util.ModeNumber['single'],util.Switch_Camera[0])
+        so.setCameraOption('Face Detection',randomoption)
         tb.captureAndCheckPicCount('single')
 
+    # Testcase 12
     def testFrontFaceCapturepictureWithLocation(self):
         """
         Summary:Capture image with location front camera.
@@ -208,27 +192,5 @@ class CameraTest(unittest.TestCase):
         """
         so.setCameraOption('Switch Camera','1')
         randomoption = random.choice(Geo_Location)
-        so.setCameraOption('Geo Location',randomoption,util.ModeNumber['single'],util.Switch_Camera[0])
+        so.setCameraOption('Geo Location',randomoption)
         tb.captureAndCheckPicCount('single')
-
-    def _pressBack(self,touchtimes):
-        for i in range(1,touchtimes+1):
-            d.press('back')
-
-    def _confirmSettingMode(self,sub_mode,option):
-        if sub_mode == 'location':
-            result = a.cmd('cat','/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep '+ sub_mode)
-            if result.find(option) == -1:
-                self.fail('set camera setting ' + sub_mode + ' to ' + option + ' failed')
-        else:
-            result = a.cmd('cat','/data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | grep ' + sub_mode)
-            if result.find(option) == -1:
-                self.fail('set camera setting ' + sub_mode + ' to ' + option + ' failed')
-
-    def _capturePictureAndConfirm(self,timer=0):
-        beforeC = a.cmd('ls','/sdcard/DCIM/100ANDRO')
-        tb.takePicture('single')
-        time.sleep(timer)
-        afterC  = a.cmd('ls','/sdcard/DCIM/100ANDRO')
-        if afterC == beforeC:
-            self.fail('take picture failed !!')
