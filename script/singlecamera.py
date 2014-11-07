@@ -33,7 +33,7 @@ class CameraTest(unittest.TestCase):
         super(CameraTest,self).tearDown()
         #4.Exit  activity
         tb.switchBackOrFrontCamera('back')
-        util.pressBackKey(4)
+        a.pressBackKey(4)
 
     # Testcase 2
     def testCaptureSingleImageWithExposure(self):
