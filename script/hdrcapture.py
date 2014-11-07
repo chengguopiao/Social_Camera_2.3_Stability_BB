@@ -34,7 +34,7 @@ class CameraTest(unittest.TestCase):
 
     def tearDown(self):
         super(CameraTest,self).tearDown()
-        util.pressBackKey(4)
+        a.pressBackKey(4)
 
     # Testcase 1
     def testCapturePictureWithFD(self):
