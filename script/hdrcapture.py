@@ -48,7 +48,7 @@ class CameraTest(unittest.TestCase):
         '''
         fdfr = random.choice(Face_Detection)
         # Step 2
-        so.setCameraOption('Face Detection',fdfr,util.modeNumber)
+        so.setCameraOption('Face Detection',fdfr,modeNumber)
         # Step 3
         tb.captureAndCheckPicCount('single')
 
