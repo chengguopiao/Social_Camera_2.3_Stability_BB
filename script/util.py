@@ -30,26 +30,36 @@ POP_MODE  = {'smile':"Smile\nOFF",
              'burstslow':'SLOW'
              }
 ######################################################################################################################################
-Mode   = {'9':'video',
-          '1':'single',
-          '12':'depth',
-          '11':'panorama',
-          '5':'burst',
-          '7':'perfectshot',
-          '3':'smile',
-          '2':'hdr',
-          '0':'default'
-          }
-ModeNumber = {'video':'9',
-              'single':'1',
-              'depth':'12',
-              'panorama':'11',
-              'burst':'5',
-              'perfectshot':'7',
-              'smile':'3',
-              'hdr':'2',
-              'default':'0'
-          }
+Confirm_Mode = {'Depth Snapshot':'depth',
+                'Single':'single',
+                'Video':'video',
+                'Panorama':'panorama',
+                'Burst':'burst',
+                'Perfect Shot':'perfectshot',
+                'smile':'smile',
+                'hdr':'hdr',
+                'default':'default'
+                }
+Mode         = {'9':'video',
+                '1':'single',
+                '12':'depth',
+                '11':'panorama',
+                '5':'burst',
+                '7':'perfectshot',
+                '3':'smile',
+                '2':'hdr',
+                '0':'default'
+                }
+ModeNumber   = {'video':'9',
+                'single':'1',
+                'depth':'12',
+                'panorama':'11',
+                'burst':'5',
+                'perfectshot':'7',
+                'smile':'3',
+                'hdr':'2',
+                'default':'0'
+                }
 ##################################################################################################################
 #SetOption() Class variable
 Exposure          = ['-6','-3','0','3','6'] #_0_0
@@ -125,7 +135,7 @@ DEFAULT_OPTION    = {'Exposure'         : Exposure[2],
 ##################################################################################################################
 #TouchButton() Class variable
 ACTIVITY_NAME           = 'com.intel.camera22/.Camera'
-CONFIRM_MODE_LIST       = ['video','single','depth','panorama','burst','perfectshot']
+CONFIRM_MODE_LIST       = ['video','single','depth','panorama','burst','perfectshot','smile','hdr','default']
 CPTUREBUTTON_RESOURCEID = 'com.intel.camera22:id/btn_mode'
 FRONTBACKBUTTON_DESCR   = 'com.intel.camera22:id/shortcut_mode_2'
 CPTUREPOINT             = 'adb shell input swipe 2200 1095 2200 895 '
@@ -266,7 +276,7 @@ class Adb():
         self.cmd('launch',ACTIVITY_NAME)
         time.sleep(2)
         #When it is the first time to launch camera there will be a dialog to ask user 'remember location', so need to check
-        if d(text = 'Yes').wait.exists(timeout = 1000) and not d(text='Skip').wait.exists(timeout=1000):
+        if d(text = 'Yes').wait.exists(timeout = 1000) and not d(text = 'Skip').wait.exists(timeout=1000):
             d(text = 'Yes').click.wait()
         if d(text = 'Skip').wait.exists(timeout = 2000):
             d(text = 'Skip').click.wait()
@@ -503,26 +513,31 @@ class TouchButton():
         a = str(result)
         b = a[a.index('value="') + 1:a.rindex('/')]
         cmode = b[b.index('"') + 1:b.rindex('"')]
-        cmodenew = int(cmode)
+        #cmodenew = int(cmode)
         modenew = Mode[cmode]
         currentindex = CONFIRM_MODE_LIST.index(modenew)
         if  mode_index != currentindex:
-            raise Exception('set'+ mode + ' fail')
+            if mode != 'depth' or cmode != ModeNumber['default']:
+                raise Exception('set'+ mode + ' fail')
             #'com.intel.camera22_preferences_'+cmodenew+'.xml'
 
-    def captureAndCheckPicCount(self,capturemode,delaytime=0):
+    def captureAndCheckPicCount(self,capturemode,delaytime=0,times=1):
         d = { 'single':'jpg', 'video':'mp4', 'smile':'jpg', 'longclick':'jpg'} 
         beforeNo = commands.getoutput('adb shell ls /sdcard/DCIM/*/* | grep '+ d[capturemode] +' | wc -l') #Get count before capturing
-        if capturemode == 'video':
-            self.takeVideo(delaytime)
-        else:
-            self.takePicture(capturemode)
-        time.sleep(delaytime) #Sleep a few seconds for file saving
+        for i in range (0,times):
+            if capturemode == 'video':
+                self.takeVideo(delaytime)
+            else:
+                self.takePicture(capturemode)
+            time.sleep(delaytime) #Sleep a few seconds for file saving
         afterNo = commands.getoutput('adb shell ls /sdcard/DCIM/*/* | grep '+ d[capturemode] +' | wc -l') #Get count after taking picture
         result = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/mode_selected.xml| grep \'value="5"\'')
-        if result.find('value="5"') != -1:
-            if string.atoi(beforeNo) != string.atoi(afterNo) - 10:
+        if result.find('value="5"') != -1 and capturemode != 'longclick':
+            if string.atoi(beforeNo) != string.atoi(afterNo) - 10*times:
                raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
+        elif not result.find('value="7"') and not result.find('value="0"') and capturemode != 'longclick':
+            if string.atoi(beforeNo) != string.atoi(afterNo) - times:
+                raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
         else:
-            if string.atoi(beforeNo) == string.atoi(afterNo) :#If the count does not raise up after capturing, case failed
+            if string.atoi(beforeNo) == string.atoi(afterNo):#If the count does not raise up after capturing, case failed
                 raise Exception('Taking picture/video failed!'+'bn='+beforeNo+',an='+afterNo+','+d[capturemode])
