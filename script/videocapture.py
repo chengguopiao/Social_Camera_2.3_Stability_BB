@@ -30,7 +30,7 @@ class CameraTest(unittest.TestCase):
 
     def tearDown(self):
         super(CameraTest,self).tearDown()
-        a.pressBackKey(4)
+        AD.pressBackKey(4)
         time.sleep(2)
 
     def testRecordVideoWithVideoSize(self):
