@@ -398,16 +398,19 @@ class SetOption():
         while not d(resourceId = 'com.intel.camera22:id/setting_item_name').wait.exists(timeout=2000):
             d(resourceId = 'com.intel.camera22:id/camera_settings').click.wait()
         # If scenes is going to change to auto, the setting may be on the top , we need to slide setting list down
-        if optiontext=='Scenes' and option=='auto':
-            slidetimes = 1
-            while d(text = optiontext).wait.gone(timeout = 2000) and slidetimes < 5:
-                self._slideSettingListDown()
-                slidetimes = slidetimes + 1
-        else:
-            trytimes = 1
-            while d(text = optiontext).wait.gone(timeout = 2000) and trytimes < 5:
+        flag = False  # flag is true: find the optiontext
+        for i in range (0,5):
+            if d(text = optiontext).wait.gone(timeout = 2000):
                 self._slideSettingListUp()
-                trytimes = trytimes + 1
+            else :
+                flag = True
+                break
+        if not flag:
+            for j in range (0,5):
+            if d(text = optiontext).wait.gone(timeout = 2000):
+                self._slideSettingListDown()
+            else :
+                break
         newoptiontext = optiontext.replace(' ', '_')
         #cated_0_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | wc -l'))
         #cated_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | wc -l'))
