@@ -407,10 +407,10 @@ class SetOption():
                 break
         if not flag:
             for j in range (0,5):
-            if d(text = optiontext).wait.gone(timeout = 2000):
-                self._slideSettingListDown()
-            else :
-                break
+                if d(text = optiontext).wait.gone(timeout = 2000):
+                    self._slideSettingListDown()
+                else :
+                    break
         newoptiontext = optiontext.replace(' ', '_')
         #cated_0_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0_0.xml | wc -l'))
         #cated_0 = int(commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | wc -l'))
