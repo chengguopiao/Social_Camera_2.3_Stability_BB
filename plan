@@ -25,8 +25,8 @@
 #script.panoramacapture.CameraTest.testCapturepictureWithGeoLocation = 50
 #script.panoramacapture.CameraTest.testCapturepictureWithISOSetting = 50
 #script.singlecamera.CameraTest.testCaptureSingleImageWithExposure = 50
-script.singlecamera.CameraTest.testCaptureSingleImageWithScene = 50
-script.singlecamera.CameraTest.testCaptureSingleImageWithFDFR = 50
+#script.singlecamera.CameraTest.testCaptureSingleImageWithScene = 50
+#script.singlecamera.CameraTest.testCaptureSingleImageWithFDFR = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithPictureSize = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithHits = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithSelfTimer = 50
