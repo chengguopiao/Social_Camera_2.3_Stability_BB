@@ -20,9 +20,9 @@
 #script.hdrcapture.CameraTest.testCapturePictureWithFD = 50
 #script.hdrcapture.CameraTest.testCapturepictureWithGeoLocation = 50
 script.hdrcapture.CameraTest.testCapturePictureWithPictureSize = 50
-script.hdrcapture.CameraTest.testCapturePictureWithSelfTimer = 50
-script.panoramacapture.CameraTest.testCaptureWithExposure = 50
-script.panoramacapture.CameraTest.testCapturepictureWithGeoLocation = 50
+#script.hdrcapture.CameraTest.testCapturePictureWithSelfTimer = 50
+#script.panoramacapture.CameraTest.testCaptureWithExposure = 50
+#script.panoramacapture.CameraTest.testCapturepictureWithGeoLocation = 50
 script.panoramacapture.CameraTest.testCapturepictureWithISOSetting = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithExposure = 50
 script.singlecamera.CameraTest.testCaptureSingleImageWithScene = 50
